@@ -4,42 +4,84 @@
  */
 package model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 /**
  *
  * @author ASUS
  */
 
 //Hanya petugas yang boleh login ke sistem
-//Petugas yang masuk ke sistem otomatis tercatat di setiap transaksi parkir.
-
+@Entity
+@Table(name = "petugas")
 public class Petugas {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_petugas")
+    private int idPetugas;
+
+    @Column(name = "nama_petugas", nullable = false)
     private String namaPetugas;
+
+    @Column(name = "password", nullable = false)
     private String password;
- 
+
+    //Constructor kosong
+    protected Petugas() {
+    }
+
+    //Constructor untuk data baru
     public Petugas(String namaPetugas, String password) {
         setNamaPetugas(namaPetugas);
         setPassword(password);
     }
- 
+
+    //Constructor khusus data dari database
+    public Petugas(int idPetugas, String namaPetugas, String password) {
+        this.idPetugas = idPetugas;
+        setNamaPetugas(namaPetugas);
+        setPassword(password);
+    }
+
+    public int getIdPetugas() {
+        return idPetugas;
+    }
+
     public String getNamaPetugas() {
         return namaPetugas;
     }
- 
+
     public void setNamaPetugas(String namaPetugas) {
         if (namaPetugas == null || namaPetugas.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nama petugas tidak boleh kosong!");
+            throw new IllegalArgumentException(
+                    "Nama petugas tidak boleh kosong!"
+            );
         }
+
         this.namaPetugas = namaPetugas.trim();
     }
- 
-    public void setPassword(String password) {
-    if (password == null || password.trim().isEmpty()) {
-        throw new IllegalArgumentException("Password tidak boleh kosong!");
+
+    public String getPassword() {
+        return password;
     }
-    this.password = password;
-}
- 
+
+    public void setPassword(String password) {
+        if (password == null || password.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Password tidak boleh kosong!"
+            );
+        }
+
+        this.password = password;
+    }
+
     public boolean cekLogin(String nama, String password) {
-        return namaPetugas.equals(nama.trim()) && this.password.equals(password);
+        return namaPetugas.equals(nama.trim())
+                && this.password.equals(password);
     }
 }

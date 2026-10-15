@@ -4,46 +4,62 @@
  */
 package model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 /**
  *
  * @author ASUS
  */
-public class Mobil extends Kendaraan{
+@Entity
+@DiscriminatorValue("Mobil")
+public class Mobil extends Kendaraan {
+
     private static final double TARIF_PER_JAM = 5000;
     private static final double TARIF_MAKSIMAL = 50000;
+
+    @Column(name = "jumlah_pintu")
     private int jumlahPintu;
- 
-    public Mobil(int idKendaraan, String nomorPlat, String merk, String warna, int jumlahPintu) {
-        super(idKendaraan, nomorPlat, merk, warna);
+
+    //Constructor kosong
+    protected Mobil() {
+    }
+
+    //Constructor yang digunakan program
+    public Mobil(String nomorPlat, String merk, String warna, int jumlahPintu) {
+        super(nomorPlat, merk, warna);
         setJumlahPintu(jumlahPintu);
     }
- 
+
     public int getJumlahPintu() {
         return jumlahPintu;
     }
- 
+
     public void setJumlahPintu(int jumlahPintu) {
         if (jumlahPintu < 2 || jumlahPintu > 6) {
-            throw new IllegalArgumentException("Jumlah pintu mobil harus 2-6!");
+            throw new IllegalArgumentException(
+                    "Jumlah pintu mobil harus 2-6!"
+            );
         }
+
         this.jumlahPintu = jumlahPintu;
     }
- 
+
     @Override
     public String getJenisKendaraan() {
         return "Mobil";
     }
- 
+
     @Override
     protected double getTarifPerJam() {
         return TARIF_PER_JAM;
     }
- 
+
     @Override
     protected double getTarifMaksimal() {
         return TARIF_MAKSIMAL;
     }
- 
+
     @Override
     public void tampilkanInfo() {
         super.tampilkanInfo();

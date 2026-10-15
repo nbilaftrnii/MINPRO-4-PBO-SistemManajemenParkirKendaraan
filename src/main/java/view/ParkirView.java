@@ -6,11 +6,11 @@ package view;
 
 import java.time.format.DateTimeParseException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import model.Kendaraan;
 import model.Parkir;
-import model.SlotParkir;
+import javax.swing.JPasswordField;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,13 +18,11 @@ import model.SlotParkir;
  */
 public class ParkirView {
     private static final int LEBAR_MENU = 51;
- 
     private final Scanner input;
- 
     public ParkirView(Scanner input) {
         this.input = input;
     }
- 
+
     //Validasi input
     public int inputIntPositif(String pesan) {
         while (true) {
@@ -40,7 +38,7 @@ public class ParkirView {
             }
         }
     }
- 
+
     public int inputIntRentang(String pesan, int min, int max) {
         while (true) {
             int angka = inputIntPositif(pesan);
@@ -50,7 +48,7 @@ public class ParkirView {
             System.out.println("Input harus antara " + min + " sampai " + max + "!");
         }
     }
- 
+
     public String inputTidakKosong(String pesan) {
         while (true) {
             System.out.print(pesan);
@@ -61,7 +59,7 @@ public class ParkirView {
             System.out.println("Input tidak boleh kosong!");
         }
     }
- 
+
     private String inputDenganPola(String pesan, String pola, String pesanSalah) {
         while (true) {
             String data = inputTidakKosong(pesan);
@@ -71,7 +69,7 @@ public class ParkirView {
             System.out.println(pesanSalah);
         }
     }
- 
+
     public String inputPilihan(String label, String... pilihan) {
         String daftar = String.join("/", pilihan);
         while (true) {
@@ -84,32 +82,32 @@ public class ParkirView {
             System.out.println("Pilihan hanya " + daftar + "!");
         }
     }
- 
+
     public String inputMerk() {
         return inputDenganPola("Merk: ", ".*[a-zA-Z].*", "Merk harus mengandung huruf!");
     }
- 
+
     public String inputWarna() {
         return inputDenganPola("Warna: ", "[a-zA-Z ]+", "Warna hanya boleh berisi huruf!");
     }
- 
+
     public String inputNamaPetugas() {
         return inputDenganPola("Nama Petugas: ", "[a-zA-Z ]+", "Nama hanya boleh berisi huruf!");
     }
- 
+
     public String inputJenisKendaraan() {
         return inputPilihan("Jenis Kendaraan", "Motor", "Mobil");
     }
- 
+
     public String inputMetodePembayaran() {
         return inputPilihan("Metode Pembayaran", "Cash", "QRIS");
     }
- 
+
     public boolean konfirmasiHapus() {
         return inputPilihan("Yakin ingin menghapus data?", "Y", "T").equals("Y");
     }
- 
-    public String inputPassword(String pesan) {
+
+     public String inputPassword(String pesan) {
         java.io.Console konsol = System.console();
         while (true) {
             String data;
@@ -126,7 +124,7 @@ public class ParkirView {
             System.out.println("Input tidak boleh kosong!");
         }
     }
- 
+
     public String inputWaktu(String label) {
         while (true) {
             String waktu = inputTidakKosong(label + " [format DD-MM-YYYY HH:MM, contoh 24-09-2026 17:30]: ");
@@ -138,36 +136,17 @@ public class ParkirView {
             }
         }
     }
- 
+
     //Tampilan
-    private String garis(char karakter) {
-        StringBuilder hasil = new StringBuilder("|");
-        for (int i = 0; i < LEBAR_MENU; i++) {
-            hasil.append(karakter);
-        }
-        return hasil.append("|").toString();
-    }
- 
-    private void baris(String teks) {
-        System.out.printf("|%-" + LEBAR_MENU + "s|%n", teks);
-    }
- 
-    private String tengah(String teks) {
-        StringBuilder hasil = new StringBuilder();
-        for (int i = 0; i < (LEBAR_MENU - teks.length()) / 2; i++) {
-            hasil.append(' ');
-        }
-        return hasil.append(teks).toString();
-    }
- 
     public void tampilkanHeaderLogin() {
         System.out.println();
-        System.out.println(garis('='));
-        baris(tengah("MY PARKIR GW"));
-        baris(tengah("LOGIN PETUGAS"));
-        System.out.println(garis('='));
+        System.out.println("|=========================|");
+        System.out.println("|    🚗  MY PARKIR GW 🚗    |");
+        System.out.println("|                         |");
+        System.out.println("|  --- Petugas Login ---  |");
+        System.out.println("|=========================|");
     }
- 
+
     public void tampilkanMenu(String namaPetugas) {
         System.out.println();
         System.out.println("|===================================================|");
@@ -187,16 +166,16 @@ public class ParkirView {
         System.out.println("|   [5]  Cari Data Parkir                           |");
         System.out.println("|   [6]  Logout                                     |");
         System.out.println("|                                                   |");
-        System.out.println("-----------------------------------------------------");    
+        System.out.println("-----------------------------------------------------");
     }
- 
+
     public void tampilkanRingkasanSlot(int motorKosong, int motorTotal,
                                        int mobilKosong, int mobilTotal) {
         System.out.println("Slot kosong -> Motor: " + motorKosong + "/" + motorTotal
                 + " | Mobil: " + mobilKosong + "/" + mobilTotal);
     }
- 
-    public int tampilkanParkirAktif(ArrayList<Parkir> daftar) {
+
+    public int tampilkanParkirAktif(List<Parkir> daftar) {
         int jumlah = 0;
         System.out.println("\n=========== KENDARAAN YANG SEDANG PARKIR ===========");
         System.out.printf("%-9s %-12s %-6s %-16s%n", "ID Parkir", "Plat", "Slot", "Waktu Masuk");
@@ -210,8 +189,8 @@ public class ParkirView {
         }
         return jumlah;
     }
- 
-    public void tampilkanParkir(ArrayList<Parkir> daftar) {
+
+    public void tampilkanParkir(List<Parkir> daftar) {
         if (daftar.isEmpty()) {
             System.out.println("\nBelum ada data parkir.");
             return;
@@ -220,7 +199,7 @@ public class ParkirView {
             parkir.tampilkanInfo();
         }
     }
- 
+
     public void pesan(String pesan) {
         System.out.println(pesan);
     }

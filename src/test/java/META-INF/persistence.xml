@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+  <persistence-unit name="ParkirPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+    <class>model.Kendaraan</class>
+    <class>model.Motor</class>
+    <class>model.Mobil</class>
+    <class>model.Petugas</class>
+    <class>model.SlotParkir</class>
+    <class>model.Parkir</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+    <properties>
+      <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_parkir"/>
+      <property name="jakarta.persistence.jdbc.user" value="root"/>
+      <property name="jakarta.persistence.jdbc.password" value=""/>
+
+      <!-- none = Hibernate TIDAK mengubah tabel; struktur & data tetap dari db_parkir.sql -->
+      <property name="hibernate.hbm2ddl.auto" value="none"/>
+      <!-- ganti ke true kalau mau melihat SQL yang dibuat Hibernate (bagus untuk demo/presentasi) -->
+      <property name="hibernate.show_sql" value="false"/>
+    </properties>
+  </persistence-unit>
+</persistence>
