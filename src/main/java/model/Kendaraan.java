@@ -38,11 +38,9 @@ public abstract class Kendaraan implements Bertarif {
     @Column(name = "warna", nullable = false)
     private String warna;
 
-    //Constructor kosong 
     protected Kendaraan() {
     }
 
-    //Constructor yang dipakai program
     public Kendaraan(String nomorPlat, String merk, String warna) {
         setNomorPlat(nomorPlat);
         setMerk(merk);

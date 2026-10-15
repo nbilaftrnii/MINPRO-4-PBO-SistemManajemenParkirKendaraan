@@ -20,11 +20,9 @@ public class Motor extends Kendaraan {
     @Column(name = "kapasitas_cc")
     private int kapasitasCC;
 
-    //Constructor kosong
     protected Motor() {
     }
 
-    //Constructor yang digunakan program
     public Motor(String nomorPlat, String merk, String warna, int kapasitasCC) {
         super(nomorPlat, merk, warna);
         setKapasitasCC(kapasitasCC);

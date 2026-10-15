@@ -31,17 +31,14 @@ public class Petugas {
     @Column(name = "password", nullable = false)
     private String password;
 
-    //Constructor kosong
     protected Petugas() {
     }
 
-    //Constructor untuk data baru
     public Petugas(String namaPetugas, String password) {
         setNamaPetugas(namaPetugas);
         setPassword(password);
     }
 
-    //Constructor khusus data dari database
     public Petugas(int idPetugas, String namaPetugas, String password) {
         this.idPetugas = idPetugas;
         setNamaPetugas(namaPetugas);

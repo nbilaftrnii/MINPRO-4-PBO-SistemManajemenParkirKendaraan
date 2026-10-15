@@ -138,13 +138,32 @@ public class ParkirView {
     }
 
     //Tampilan
+    private String garis(char karakter) {
+        StringBuilder hasil = new StringBuilder("|");
+        for (int i = 0; i < LEBAR_MENU; i++) {
+            hasil.append(karakter);
+        }
+        return hasil.append("|").toString();
+    }
+ 
+    private void baris(String teks) {
+        System.out.printf("|%-" + LEBAR_MENU + "s|%n", teks);
+    }
+ 
+    private String tengah(String teks) {
+        StringBuilder hasil = new StringBuilder();
+        for (int i = 0; i < (LEBAR_MENU - teks.length()) / 2; i++) {
+            hasil.append(' ');
+        }
+        return hasil.append(teks).toString();
+    }
+ 
     public void tampilkanHeaderLogin() {
         System.out.println();
-        System.out.println("|=========================|");
-        System.out.println("|    🚗  MY PARKIR GW 🚗    |");
-        System.out.println("|                         |");
-        System.out.println("|  --- Petugas Login ---  |");
-        System.out.println("|=========================|");
+        System.out.println(garis('='));
+        baris(tengah("MY PARKIR GW"));
+        baris(tengah("LOGIN PETUGAS"));
+        System.out.println(garis('='));
     }
 
     public void tampilkanMenu(String namaPetugas) {

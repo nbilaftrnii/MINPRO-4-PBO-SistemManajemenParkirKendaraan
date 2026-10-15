@@ -20,10 +20,7 @@
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_parkir"/>
       <property name="jakarta.persistence.jdbc.user" value="root"/>
       <property name="jakarta.persistence.jdbc.password" value=""/>
-
-      <!-- none = Hibernate TIDAK mengubah tabel; struktur & data tetap dari db_parkir.sql -->
       <property name="hibernate.hbm2ddl.auto" value="none"/>
-      <!-- ganti ke true kalau mau melihat SQL yang dibuat Hibernate (bagus untuk demo/presentasi) -->
       <property name="hibernate.show_sql" value="false"/>
     </properties>
   </persistence-unit>

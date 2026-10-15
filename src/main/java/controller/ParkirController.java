@@ -169,7 +169,7 @@ public class ParkirController {
         int lamaJam = view.inputIntPositif("Lama Parkir (jam): ");
 
         String waktuKeluar = parkir.hitungWaktuKeluar(lamaJam);
-        view.pesan("Waktu keluar : " + waktuKeluar + " (otomatis)");
+        view.pesan("Waktu keluar : " + waktuKeluar);
 
         String metode = view.inputMetodePembayaran();
         int tarif = (int) parkir.hitungTarif(lamaJam);

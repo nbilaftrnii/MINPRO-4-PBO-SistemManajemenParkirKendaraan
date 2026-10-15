@@ -197,38 +197,30 @@ public class Parkir {
     }
 
     public void cetakStruk(int lamaJam) {
+        int tarif = (int) hitungTarif(lamaJam);
+        int bayar = (int) jumlahBayar;
+        int kembalian = Math.max(0, bayar - tarif);
+ 
         System.out.println();
         System.out.println("========================================");
         System.out.println("              💰 Receipt");
         System.out.println("             MY PARKIR GW");
         System.out.println("========================================");
-        System.out.printf("%-20s: %d%n", "ID Parkir", idParkir);
-        System.out.printf("%-20s: %s%n",
-                "Nomor Plat", kendaraan.getNomorPlat());
-        System.out.printf("%-20s: %s%n",
-                "Jenis Kendaraan", kendaraan.getJenisKendaraan());
-        System.out.printf("%-20s: %s%n",
-                "Merk", kendaraan.getMerk());
-        System.out.printf("%-20s: %s%n",
-                "Warna", kendaraan.getWarna());
-        System.out.printf("%-20s: %s%n",
-                "Slot", slot.getNomorSlot());
+        System.out.println("ID Parkir        : " + idParkir);
+        System.out.println("Nomor Plat       : " + kendaraan.getNomorPlat());
+        System.out.println("Jenis Kendaraan  : " + kendaraan.getJenisKendaraan());
+        System.out.println("Slot             : " + slot.getNomorSlot());
+        System.out.println("Petugas          : " + petugas.getNamaPetugas());
         System.out.println("----------------------------------------");
-        System.out.printf("%-20s: %s%n",
-                "Waktu Masuk", waktuMasuk);
-        System.out.printf("%-20s: %s%n",
-                "Waktu Keluar", waktuKeluar);
-        System.out.printf("%-20s: %d jam%n",
-                "Lama Parkir", lamaJam);
+        System.out.println("Waktu Masuk      : " + waktuMasuk);
+        System.out.println("Waktu Keluar     : " + waktuKeluar);
+        System.out.println("Lama Parkir      : " + lamaJam + " jam");
         System.out.println("----------------------------------------");
-        System.out.printf("%-20s: Rp%.0f%n",
-                "Total Tarif", hitungTarif(lamaJam));
-        System.out.printf("%-20s: %s%n",
-                "Metode Pembayaran", metodePembayaran);
-        System.out.printf("%-20s: Rp%.0f%n",
-                "Jumlah Bayar", jumlahBayar);
-        System.out.printf("%-20s: %s%n",
-                "Status Pembayaran", statusPembayaran);
+        System.out.println("Total Tarif      : Rp" + tarif);
+        System.out.println("Metode Pembayaran: " + metodePembayaran);
+        System.out.println("Jumlah Bayar     : Rp" + bayar);
+        System.out.println("Kembalian        : Rp" + kembalian);
+        System.out.println("Status Pembayaran: " + statusPembayaran);
         System.out.println("========================================");
         System.out.println("              Thank You");
         System.out.println("         HATI-HATI DI JALAN!");

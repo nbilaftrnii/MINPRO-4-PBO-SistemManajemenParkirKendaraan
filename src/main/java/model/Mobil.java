@@ -21,11 +21,9 @@ public class Mobil extends Kendaraan {
     @Column(name = "jumlah_pintu")
     private int jumlahPintu;
 
-    //Constructor kosong
     protected Mobil() {
     }
 
-    //Constructor yang digunakan program
     public Mobil(String nomorPlat, String merk, String warna, int jumlahPintu) {
         super(nomorPlat, merk, warna);
         setJumlahPintu(jumlahPintu);

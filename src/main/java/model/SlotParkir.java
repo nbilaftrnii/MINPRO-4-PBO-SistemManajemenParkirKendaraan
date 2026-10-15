@@ -29,11 +29,9 @@ public class SlotParkir {
     @Column(name = "status_slot", nullable = false)
     private String statusSlot;
 
-    // Constructor kosong
     protected SlotParkir() {
     }
 
-    // Constructor yang digunakan program
     public SlotParkir(String nomorSlot, String jenisSlot) {
         this.nomorSlot = nomorSlot;
         this.jenisSlot = jenisSlot;
