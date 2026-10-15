@@ -304,7 +304,7 @@ Jika data tidak ditemukan, program menampilkan pesan bahwa data parkir dengan ID
 Perubahan disimpan melalui DAO ke database MySQL sehingga data terbaru dapat ditampilkan kembali saat program dijalankan.
 
 ---
-### G. Logout
+### H. Logout
 
 <img width="515" height="104" alt="image" src="https://github.com/user-attachments/assets/ca5619fb-c96e-4452-af50-23d5c39331ee" />
 
